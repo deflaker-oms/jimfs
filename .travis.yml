@@ -14,17 +14,14 @@ before_install:
   - export M2_HOME=$PWD/apache-maven-3.5.0
   - export PATH=$M2_HOME/bin:$PATH
 
-install: mvn install -U -DskipTests=true
+# install: mvn install -DskipTests=true
+install: true
 
-script: mvn verify -U -Dmaven.javadoc.skip=true
+script: mvn verify -Dmaven.javadoc.skip=true
 
 after_success:
   - util/deploy_snapshot.sh
   - util/update_snapshot_docs.sh
-
-cache:
-  directories:
-  - $HOME/.m2
 
 env:
   global:
