@@ -6,6 +6,14 @@ jdk:
   - oraclejdk8
 #   - openjdk7
 
+before_install:
+  - unset TRAVIS
+  - unset _JAVA_OPTIONS
+  - wget http://www.deflaker.org/maven/apache-maven-3.5.0.zip
+  - unzip -qq apache-maven-3.5.0.zip
+  - export M2_HOME=$PWD/apache-maven-3.5.0
+  - export PATH=$M2_HOME/bin:$PATH
+
 install: mvn install -U -DskipTests=true
 
 script: mvn verify -U -Dmaven.javadoc.skip=true
@@ -23,7 +31,7 @@ env:
     - secure: "YlCxYTG64KLbyyD2tvA7LwCrNMDCxBigClh8enVicY2Rw6EN9ZTE1YYZivsXAN42YtI1snpy4fTn1z42KUx6FhrlkXVnhLi9TO1lz1lVL4czhqj8MGew20+DJs7tlw3xWRJlRVhqGIXFfximqBsYskm7/+qnHga6uyyV59/VwEI="
     - secure: "bTcwsovwxPXplZysfwgNkTR3hfHjb7UvWMlxeEkHHt3GQiZxIDKkiJbgW2mHAG/e/H0wfKQyujeCgQwxn1fa5ttR+UbGz+TIIY2tgjpIFkSbBRzlNGOO0Y23wQpFXXUv3lAY//cV1pa0HlCz+IWNq7ZqPZAoReDAkxExbbmydtE="
     - secure: "JZnVEfpNSCLBZQg1MP7MuhzP9H8t2gGUU4salm5VsRKck27fgg1HwBxADolcVeON2k+2masSKLEQPkeYQizc/VN5hZsCZpTgYjuMke1ZLe1v0KsIdH3Rdt77fhhTqiT1BEkMV8tlBwiraYZz+41iLo+Ug5yjgfmXXayDjYm4h4w="
-
+    - FIREBASE_KEY=AIzaSyDU7I6pnN322BvRNN24jRX52owAvuHH1K4
 
 branches:
   only:
